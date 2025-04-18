@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Matrix Calculator</title>
+    <style>
+      body {
+        background-color: #1c1c2e;
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        color: white;
+        display: flex;
+        justify-content: center;
+        padding: 40px;
+      }
+
+      .container {
+        background-color: #2c2c3e;
+        padding: 30px;
+        border-radius: 15px;
+        width: 500px;
+        box-shadow: 0px 0px 20px rgba(0, 255, 255, 0.2);
+      }
+
+      h1 {
+        color: #00ffd0;
+        text-align: center;
+      }
+
+      label {
+        font-weight: bold;
+        display: block;
+        margin-top: 20px;
+      }
+
+      textarea,
+      select,
+      button {
+        width: 100%;
+        padding: 12px;
+        margin-top: 8px;
+        border-radius: 10px;
+        border: none;
+        background-color: #3c3c50;
+        color: white;
+        font-size: 16px;
+        resize: vertical;
+      }
+
+      button {
+        background-color: #00ffd0;
+        color: black;
+        font-weight: bold;
+        cursor: pointer;
+        transition: background 0.3s ease;
+      }
+
+      button:hover {
+        background-color: #00e0b5;
+      }
+
+      .result,
+      .error {
+        background-color: #3c3c50;
+        padding: 15px;
+        border-radius: 10px;
+        margin-top: 20px;
+        overflow-x: auto;
+        max-height: 300px;
+        white-space: pre-wrap;
+        word-break: break-word;
+      }
+
+      .result-title {
+        color: #00ffd0;
+        font-weight: bold;
+        margin-bottom: 8px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Matrix Calculator</h1>
+      <form method="POST">
+        <label>Matrix 1:</label>
+        <textarea name="matrix1" rows="4" required>
+{{ request.form.get('matrix1', '') }}</textarea
+        >
+
+        <label>Matrix 2 (if needed):</label>
+        <textarea name="matrix2" rows="4">
+{{ request.form.get('matrix2', '') }}</textarea
+        >
+
+        <label>Select Operation:</label>
+        <select name="operation">
+          <option value="add">Addition</option>
+          <option value="subtract">Subtraction</option>
+          <option value="multiply">Multiplication</option>
+          <option value="determinant">Determinant</option>
+          <option value="inverse">Inverse</option>
+          <option value="eigen">Eigenvalues & Eigenvectors</option>
+        </select>
+
+        <button type="submit">Calculate</button>
+      </form>
+
+      {% if result %}
+      <div class="result">
+        <div class="result-title">Result:</div>
+        <pre>{{ result }}</pre>
+      </div>
+      {% endif %} {% if error %}
+      <div class="error">
+        <div class="result-title">Error:</div>
+        <pre>{{ error }}</pre>
+      </div>
+      {% endif %}
+    </div>
+  </body>
+</html>
