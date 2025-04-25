@@ -32,16 +32,6 @@ python -m venv venv
 source venv/bin/activate  # On Windows: venv\Scripts\activate
 ```
 
-### 3. Install Dependencies
-
-Install the necessary libraries using `pip`:
-
-```bash
-pip install -r requirements.txt
-```
-
-Alternatively, you can install them manually:
-
 ```bash
 pip install flask numpy matplotlib
 ```
